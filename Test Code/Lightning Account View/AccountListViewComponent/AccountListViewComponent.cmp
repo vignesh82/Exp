@@ -1,0 +1,53 @@
+<aura:component Implements="flexipage:availableForRecordHome,force:appHostable,force:lightningQuickAction" access="global" controller="AccountController">
+    <aura:attribute name="accList" type="Account[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <article class="slds-card wid" style="max:height=500px;">
+        <header class="slds-media slds-media_center slds-has-flexi-truncate slds-text-heading_large slds-text-align_center">
+            Account Record List
+        </header>
+        <div class="slds-card__body" >
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col wid">
+                            <div class="slds-truncate" title="Account Name">Account Name</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Industry">Industry</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Type">Type</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Phone	">Phone</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.accList}" var="acc">
+                        <tr>
+                            <th><lightning:input  type="text" value="{!acc.Name}"></lightning:input></th>
+                            
+                            <td >
+                                <div class="slds-truncate" title="Industry">{!acc.Industry}</div>
+                            </td>
+                            <td >
+                                <div class="slds-truncate" title="Type">{!acc.Type}</div>
+                            </td>
+                            <td >
+                                <div class="slds-truncate" title="Phone	">{!acc.Phone}</div>
+                            </td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+        </div>
+        
+            <div class="slds-align_absolute-center">
+            <lightning:button variant="brand" class="slds-button slds-button--brand"  onclick="{!c.doInit}" aura:id="Refresh" >Refresh</lightning:button>  
+        	<lightning:button variant="brand" label="Save" title="Save" onclick="{!c.save }" />
+        	<!--lightning:button variant="destructive" class="slds-button"  onclick="{!c.closeWindow}" >Cancel</lightning:button-->    
+        </div>
+           
+    </article>
+</aura:component>
